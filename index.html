@@ -7,7 +7,7 @@
 
   <style>
     /* ======================
-       GLOBAL STYLES
+      GLOBAL STYLES
     =======================*/
     * {
       margin: 0;
@@ -28,26 +28,24 @@
     }
 
     /* ======================
-       NAV
+      NAV
     =======================*/
+    
     nav {
       position: fixed;
       top: 0;
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       padding: 20px 40px;
       font-size: 14px;
       letter-spacing: 1px;
-      background: rgba(247,247,247,0.7);
-      backdrop-filter: blur(10px);
       z-index: 100;
     }
 
-    nav .links a {
-      margin-left: 20px;
-      opacity: 0.7;
-      transition: opacity 0.3s;
+    nav .links {
+      display: flex;
+      gap: 24px;
     }
 
     nav .links a:hover {
@@ -55,7 +53,7 @@
     }
 
     /* ======================
-       HERO
+      HERO
     =======================*/
     .hero {
       height: 100vh;
@@ -65,6 +63,7 @@
       align-items: center;
       text-align: center;
       padding: 0 20px;
+      position: relative;
     }
 
     .hero h1 {
@@ -79,184 +78,51 @@
       font-size: 16px;
     }
 
-    .hero button {
-      margin-top: 40px;
-      padding: 10px 20px;
-      border: 1px solid #1e1e1e;
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .hero button:hover {
-      background: #1e1e1e;
-      color: white;
-    }
-
     /* ======================
-       GALLERY
+      SIGNATURE
     =======================*/
-    .gallery {
-      padding: 120px 40px;
 
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-
-      max-width: 1200px;
-      margin: 0 auto;
+    .signature-container {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .art {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
-    }
-
-    .art img {
-      width: 100%;
+    .signature {
+      width: 300px;
       height: auto;
-      display: block;
-      border-radius: 6px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .art img:hover {
-      transform: scale(1.02);
       opacity: 0.9;
-}
-
-    .art.show {
-      opacity: 1;
-      transform: translateY(0);
     }
 
-    .caption {
-      margin-top: 10px;
-      font-size: 13px;
-      opacity: 0.6;
-    }
 
-    /* ======================
-       ABOUT / CONTACT
-    =======================*/
-    .section {
-      padding: 120px 40px;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
 
-    .section h2 {
-      font-weight: 300;
-      margin-bottom: 20px;
-    }
-
-    footer {
-      padding: 60px;
-      text-align: center;
-      font-size: 12px;
-      opacity: 0.5;
-    }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
   <nav>
-    <div class="logo">ANDREW</div>
     <div class="links">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <h1>Art Portfolio</h1>
-    <p>Paintings, Sculptures, Drawings, & More.</p>
-    <button onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">Enter</button>
+    <div class="hero-top">
+      <div class="signature-container">
+        <img src="Photos/signature.png"
+            alt="Andrew Sano Signature"
+            class="signature">
+      </div>
+    </div>
   </section>
-
-  <!-- GALLERY -->
-  <section class="gallery" id="work">
-
-    <div class="art">
-      <img src="Photos/providence.jpg" />
-    </div>
-
-    <div class="art">
-      <img src="Photos/dog_and_sandwich.jpg" />
-    </div>
-
-    <div class="art">
-      <img src="Photos/frozen.jpg" />
-    </div>
-
-    <div class="art">
-      <img src="Photos/topolino.jpg" />
-    </div>
-
-        <div class="art">
-      <img src="Photos/gameboy.jpg" />
-    </div>
-
-    <div class="art">
-      <img src="Photos/sunset.jpg" />
-    </div>
-
-    <div class="art">
-      <img src="Photos/vase.jpg" />
-    </div>
-
-    <div class="art">
-      <img src="Photos/heartbreak.jpg" />
-    </div>
-
-    <div class="art">
-      <img src="Photos/bull_skull.jpg" />
-    </div>
-
-    <div class="art">
-      <img src="Photos/black_stencil.jpg" />
-    </div>
-
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section" id="about">
-    <h2>About</h2>
-    <p>
-      A short statement about your work, philosophy, or creative direction.
-      Keep it minimal—let the images speak first.
-    </p>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>andrewsano98@outlook.com</p>
-  </section>
-
-  <footer>
-    © 2026 Andrew Sano
-  </footer>
-
-  <script>
-    // Scroll reveal animation
-    const arts = document.querySelectorAll('.art');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.2 });
-
-    arts.forEach(art => observer.observe(art));
-  </script>
 
 </body>
 </html>
